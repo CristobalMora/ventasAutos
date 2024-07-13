@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Productos</h1>
+    <div class="row">
+        {% for producto in productos %}
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    {% if producto.imagen %}
+                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    {% else %}
+                        <img src="{% static 'path/to/default_image.jpg' %}" class="card-img-top" alt="Imagen por defecto">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <p class="card-text">Año: {{ producto.año }}</p>
+                        <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                       
+                        <form method="post" enctype="multipart/form-data" class="mb-2">
+                            {% csrf_token %}
+                            <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                            <button type="submit" name="actualizar" class="btn btn-warning">Actualizar</button>
+                        </form> 
+
+                        <!-- Botón de borrado -->
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                            <button type="submit" name="borrar" class="btn btn-danger">Borrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

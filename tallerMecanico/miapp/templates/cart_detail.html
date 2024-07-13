@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Cart</h2>
+                </div>
+                <div class="card-body">
+                    {% if cart.items.all %}
+                    <ul class="list-group mb-3">
+                        {% for item in cart.items.all %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>{{ item.product.nombre }}</h5>
+                                <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                            </div>
+                            <span class="text-muted">${{ item.get_total_price }}</span>
+                            <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm">Remove</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="d-flex justify-content-between">
+                        <h5>Total: ${{ cart.get_total }}</h5>
+                        <div>
+                            <a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
+                            <a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>Your cart is empty.</p>
+                    <div class="text-center">
+                        <a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

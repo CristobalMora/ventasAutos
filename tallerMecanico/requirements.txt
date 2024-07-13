@@ -5,4 +5,5 @@ django-crispy-forms
 pillow              
 pip                 
 sqlparse            
-tzdata              
+tzdata 
+reportlab             

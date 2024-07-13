@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <!-- Include the stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
+    <section class="page-section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded same-size-img" src="{% static 'img/autos/911.jpg' %}" alt="Porsche 911">
+                </div>
+                <div class="col-md-4">
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded same-size-img" src="{% static 'img/autos/bugaty.jpg' %}" alt="Bugatti">
+                </div>
+                <div class="col-md-4">
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded same-size-img" src="{% static 'img/autos/lambo.jpg' %}" alt="Lamborghini">
+                </div>
+            </div>
+            <div class="intro-text text-center bg-faded p-5 rounded mt-4">
+                <h2 class="section-heading mb-4">
+                    <p><a class="link-opacity-50" href="{% url 'product_list' %}">Vehículos Disponibles</a></p>
+                </h2>
+                <p class="mb-3">Uno de los motivos más frecuentes para optar por un coche de lujo es el prestigio</p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
